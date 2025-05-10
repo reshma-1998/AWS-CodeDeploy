@@ -1,6 +1,6 @@
 version: 0.2
 
-run-as: Linux-user-name  # Replace with actual Linux user or remove if not needed
+#run-as: Linux-user-name  # Replace with actual Linux user or remove if not needed
 
 env:
   parameter-store:
@@ -14,7 +14,7 @@ phases:
       python: 3.11
     commands:
       - echo "Installing Python dependencies"
-      - pip install -r day-14/sample-python-app/requirements.txt
+      - pip install -r requirements.txt
 
   pre_build:
     commands:
@@ -24,7 +24,6 @@ phases:
   build:
     commands:
       - echo "Building Docker image"
-      - cd day-14/sample-python-app
       - docker build -t "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest" .
       - echo "Pushing Docker image"
       - docker push "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest"
